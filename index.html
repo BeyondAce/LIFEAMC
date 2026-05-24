@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home • Lifea MC</title>
+  <meta name="description" content="Lifea MC – The best Minecraft server. Lifesteal, Earth SMP, FFA and more." />
+  <meta name="theme-color" content="#ffffff" />
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#0a0a0a');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #fff; color-scheme: light dark; }
+    html[data-theme="dark"] { background: #0a0a0a; color-scheme: dark; }
+    html[data-theme="dark"] body { background: #0a0a0a; }
+  </style>
+  <meta property="og:title" content="Lifea MC" />
+  <meta property="og:description" content="Your heart beats here. Join Lifea MC today." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ░░ FLOATING PARTICLES ░░ -->
+  <canvas id="heartCanvas"></canvas>
+  <!-- ░░ MINECRAFT BLOCKS ░░ -->
+  <canvas id="mcCanvas"></canvas>
+
+  <!-- ░░ LOADER ░░ -->
+  <div id="loader">
+    <div class="loader-heart">
+      <i class="fa-solid fa-heart"></i>
+    </div>
+    <div class="loader-text">Lifea MC</div>
+  </div>
+
+  <!-- ░░ NAVBAR ░░ -->
+  <nav id="navbar">
+    <div class="nav-container">
+
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <svg class="logo-heart logo-heart--pixel" width="28" height="28" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="logo-layer logo-layer--outer" d="M8 14L2 8L3 3L8 2L13 3L14 8L8 14Z" fill="#dc143c"/>
+            <path class="logo-layer logo-layer--mid" d="M8 13L3 8L4 4L8 3L12 4L13 8L8 13Z" fill="#ff1744"/>
+            <path class="logo-layer logo-layer--inner" d="M8 12L4 8L5 5L8 4L11 5L12 8L8 12Z" fill="#dc143c"/>
+            <path class="logo-eye logo-eye--l" d="M6 6H7V7H6V6Z" fill="#000" opacity="0.3"/>
+            <path class="logo-eye logo-eye--r" d="M9 6H10V7H9V6Z" fill="#000" opacity="0.3"/>
+          </svg>
+          <svg class="logo-heart logo-heart--smooth" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff1744"/>
+          </svg>
+        </span>
+        <span>LIFEA <strong>MC</strong></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="pages/vote.html" class="nav-link"><i class="fa-solid fa-check-to-slot"></i> Vote</a></li>
+        <li><a href="pages/rules.html" class="nav-link"><i class="fa-solid fa-scale-balanced"></i> Rules</a></li>
+        <li><a href="pages/staff.html" class="nav-link"><i class="fa-solid fa-clipboard-user"></i> Staff</a></li>
+        <li><a href="#" class="nav-link" target="_blank"><i class="fa-solid fa-map"></i> Map</a></li>
+        <li><a href="pages/store.html" class="nav-link store-link"><i class="fa-solid fa-store"></i> Store</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="#" class="btn-discord" target="_blank">
+          <i class="fa-brands fa-discord"></i> Discord
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ░░ MOBILE DRAWER ░░ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:6px;">
+          <path d="M8 14L2 8L3 3L8 2L13 3L14 8L8 14Z" fill="#dc143c"/>
+          <path d="M8 13L3 8L4 4L8 3L12 4L13 8L8 13Z" fill="#ff1744"/>
+          <path d="M8 12L4 8L5 5L8 4L11 5L12 8L8 12Z" fill="#dc143c"/>
+        </svg> Lifea MC</span>
+      <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul>
+      <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="pages/vote.html"><i class="fa-solid fa-check-to-slot"></i> Vote</a></li>
+      <li><a href="pages/rules.html"><i class="fa-solid fa-scale-balanced"></i> Rules</a></li>
+      <li><a href="pages/staff.html"><i class="fa-solid fa-clipboard-user"></i> Staff</a></li>
+      <li><a href="#"><i class="fa-solid fa-map"></i> Map</a></li>
+      <li><a href="pages/store.html"><i class="fa-solid fa-store"></i> Store</a></li>
+      <li><a href="#" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a></li>
+    </ul>
+  </aside>
+
+  <!-- ░░ HERO ░░ -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+
+      <!-- Hardcore Heart Icon -->
+      <div class="hero-icon">
+        <svg width="80" height="80" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 14L2 8L3 3L8 2L13 3L14 8L8 14Z" fill="#dc143c"/>
+          <path d="M8 13L3 8L4 4L8 3L12 4L13 8L8 13Z" fill="#ff1744"/>
+          <path d="M8 12L4 8L5 5L8 4L11 5L12 8L8 12Z" fill="#dc143c"/>
+          <path d="M6 6H7V7H6V6Z" fill="#000" opacity="0.3"/>
+          <path d="M9 6H10V7H9V6Z" fill="#000" opacity="0.3"/>
+        </svg>
+      </div>
+
+      <h1 class="hero-title">
+         WELCOME TO <br />
+        <span class="gradient-text">LIFEA MC</span>
+      </h1>
+      <p class="hero-subtitle">The ultimate Minecraft experience with Lifesteal, Earth SMP, FFA and more.</p>
+
+      <div class="hero-status-row">
+        <!-- Server Status -->
+        <div class="status-pill" id="serverPill" onclick="copyIP()" title="Click to copy IP">
+          <div class="pill-icon"><i class="fa-solid fa-server"></i></div>
+          <div class="pill-info">
+            <span class="pill-top">
+              <span class="status-dot" id="statusDot"></span>
+              <span id="statusLabel">Checking…</span>
+            </span>
+            <span class="pill-main" id="playerCount">— players online</span>
+            <span class="pill-sub">play.lifeamc.net · click to copy</span>
+          </div>
+        </div>
+        <!-- Discord -->
+        <a href="#" target="_blank" class="status-pill discord-pill">
+          <div class="pill-icon"><i class="fa-brands fa-discord"></i></div>
+          <div class="pill-info">
+            <span class="pill-top">Community</span>
+            <span class="pill-main">Join Discord</span>
+            <span class="pill-sub">discord.gg/lifeamc</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="copyIP()">
+          <i class="fa-solid fa-heart"></i> Play Now
+        </button>
+        <a href="#gamemodes" class="btn-ghost">
+          <i class="fa-solid fa-chevron-down"></i> Explore
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ STATS BAR ░░ -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <i class="fa-solid fa-users"></i>
+        <div><span class="stat-num" data-target="12000">0</span><span>+</span></div>
+        <div class="stat-label">Total Players</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <i class="fa-solid fa-heart"></i>
+        <div><span class="stat-num" data-target="340000">0</span><span>+</span></div>
+        <div class="stat-label">Hearts Stolen</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <i class="fa-solid fa-clock"></i>
+        <div><span class="stat-num" data-target="99">0</span><span>%</span></div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <i class="fa-solid fa-star"></i>
+        <div><span class="stat-num" data-target="3">0</span><span>+</span></div>
+        <div class="stat-label">Game Modes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░ GAME MODES ░░ -->
+  <section class="section" id="gamemodes">
+    <div class="section-header">
+      <div class="section-header-icon"><i class="fa-solid fa-gamepad"></i></div>
+      <div class="section-badge"><i class="fa-solid fa-gamepad"></i> Game Modes</div>
+      <h2 class="section-title">Choose Your <span class="gradient-text">Adventure</span></h2>
+      <p class="section-subtitle">Select your favorite game mode and start playing</p>
+    </div>
+
+    <div class="store-container">
+      
+      <!-- Game Mode Tabs -->
+      <div class="store-tabs">
+        <button class="store-tab active" data-category="lifesteal">
+          <i class="fa-solid fa-heart-pulse"></i> Lifesteal
+        </button>
+        <button class="store-tab" data-category="earthsmp">
+          <i class="fa-solid fa-earth-americas"></i> Earth SMP
+        </button>
+        <button class="store-tab" data-category="ffa">
+          <span class="ffa-icon" aria-hidden="true">⚔️</span> FFA Arena
+        </button>
+      </div>
+
+      <!-- LIFESTEAL CATEGORY -->
+      <div class="store-category active" id="lifesteal">
+        <div class="gamemode-detail-header">
+          <div class="gamemode-detail-icon">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <div>
+            <h3 class="gamemode-detail-title">Lifesteal SMP</h3>
+            <p class="gamemode-detail-subtitle">Steal hearts from your enemies and grow stronger</p>
+          </div>
+        </div>
+        
+        <div class="gamemode-detail-content">
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-star"></i> Features</h4>
+            <ul class="gamemode-detail-list">
+              <li><i class="fa-solid fa-check"></i> Steal hearts on kill - gain health from defeating enemies</li>
+              <li><i class="fa-solid fa-check"></i> Custom enchantments - unique powerful enchants</li>
+              <li><i class="fa-solid fa-check"></i> Economy & trading - player-driven marketplace</li>
+              <li><i class="fa-solid fa-check"></i> Clans & alliances - team up with friends</li>
+              <li><i class="fa-solid fa-check"></i> Custom items - exclusive weapons and armor</li>
+              <li><i class="fa-solid fa-check"></i> PvP zones - designated combat areas</li>
+            </ul>
+          </div>
+
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-info-circle"></i> How to Play</h4>
+            <p>Join the server and type <code>/lifesteal</code> to enter the Lifesteal world. Start with 10 hearts and fight other players to steal their hearts. Lose all your hearts and you'll be temporarily banned until you can craft a heart or receive one from another player!</p>
+          </div>
+
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-trophy"></i> Leaderboards</h4>
+            <div class="leaderboard-mini">
+              <div class="leaderboard-item">
+                <span class="rank">#1</span>
+                <img src="https://cravatar.eu/helmavatar/Notch/32.png" alt="Player">
+                <span class="name">HeartMaster</span>
+                <span class="votes">20 Hearts</span>
+              </div>
+              <div class="leaderboard-item">
+                <span class="rank">#2</span>
+                <img src="https://cravatar.eu/helmavatar/jeb_/32.png" alt="Player">
+                <span class="name">PulseKing</span>
+                <span class="votes">18 Hearts</span>
+              </div>
+              <div class="leaderboard-item">
+                <span class="rank">#3</span>
+                <img src="https://cravatar.eu/helmavatar/Dinnerbone/32.png" alt="Player">
+                <span class="name">BeatWarrior</span>
+                <span class="votes">16 Hearts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gamemode-detail-actions">
+            <button class="btn-primary" onclick="copyIP()">
+              <i class="fa-solid fa-play"></i> Play Lifesteal Now
+            </button>
+            <a href="#" class="btn-ghost">
+              <i class="fa-solid fa-book"></i> View Guide
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EARTH SMP CATEGORY -->
+      <div class="store-category" id="earthsmp">
+        <div class="gamemode-detail-header">
+          <div class="gamemode-detail-icon">
+            <i class="fa-solid fa-earth-americas"></i>
+          </div>
+          <div>
+            <h3 class="gamemode-detail-title">Earth SMP</h3>
+            <p class="gamemode-detail-subtitle">Build your nation on a real-world map</p>
+          </div>
+        </div>
+        
+        <div class="gamemode-detail-content">
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-star"></i> Features</h4>
+            <ul class="gamemode-detail-list">
+              <li><i class="fa-solid fa-check"></i> Real-world map - 1:1000 scale Earth terrain</li>
+              <li><i class="fa-solid fa-check"></i> Nation system - create and manage your own country</li>
+              <li><i class="fa-solid fa-check"></i> Territory wars - conquer land and expand your empire</li>
+              <li><i class="fa-solid fa-check"></i> Diplomacy & trade - form alliances and trade routes</li>
+              <li><i class="fa-solid fa-check"></i> Custom resources - unique ores per continent</li>
+              <li><i class="fa-solid fa-check"></i> World events - server-wide challenges</li>
+            </ul>
+          </div>
+
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-info-circle"></i> How to Play</h4>
+            <p>Join the server and type <code>/earthsmp</code> to teleport to Earth. Choose your starting location, claim territory, and build your nation. Form alliances with other nations or wage war to expand your borders!</p>
+          </div>
+
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-flag"></i> Top Nations</h4>
+            <div class="leaderboard-mini">
+              <div class="leaderboard-item">
+                <span class="rank">#1</span>
+                <span class="name">🇺🇸 United States</span>
+                <span class="votes">1,250 Claims</span>
+              </div>
+              <div class="leaderboard-item">
+                <span class="rank">#2</span>
+                <span class="name">🇨🇳 China</span>
+                <span class="votes">1,100 Claims</span>
+              </div>
+              <div class="leaderboard-item">
+                <span class="rank">#3</span>
+                <span class="name">🇷🇺 Russia</span>
+                <span class="votes">980 Claims</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gamemode-detail-actions">
+            <button class="btn-primary" onclick="copyIP()">
+              <i class="fa-solid fa-play"></i> Play Earth SMP Now
+            </button>
+            <a href="#" class="btn-ghost">
+              <i class="fa-solid fa-map"></i> View Map
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FFA CATEGORY -->
+      <div class="store-category" id="ffa">
+        <div class="gamemode-detail-header">
+          <div class="gamemode-detail-icon">
+            <span class="ffa-icon" aria-hidden="true">⚔️</span>
+          </div>
+          <div>
+            <h3 class="gamemode-detail-title">FFA Arena</h3>
+            <p class="gamemode-detail-subtitle">Free-for-all combat arena</p>
+          </div>
+        </div>
+        
+        <div class="gamemode-detail-content">
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-star"></i> Features</h4>
+            <ul class="gamemode-detail-list">
+              <li><i class="fa-solid fa-check"></i> Instant respawn - get back into action immediately</li>
+              <li><i class="fa-solid fa-check"></i> Custom kits - choose from 10+ unique loadouts</li>
+              <li><i class="fa-solid fa-check"></i> Kill streaks - earn rewards for consecutive kills</li>
+              <li><i class="fa-solid fa-check"></i> Ranked leaderboards - compete for the top spot</li>
+              <li><i class="fa-solid fa-check"></i> Daily challenges - complete tasks for rewards</li>
+              <li><i class="fa-solid fa-check"></i> Multiple arenas - different maps and themes</li>
+            </ul>
+          </div>
+
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-info-circle"></i> How to Play</h4>
+            <p>Join the server and type <code>/ffa</code> to enter the arena. Select your kit and start fighting! Earn points for kills and climb the leaderboard. Complete daily challenges to unlock exclusive rewards!</p>
+          </div>
+
+          <div class="gamemode-detail-section">
+            <h4><i class="fa-solid fa-trophy"></i> Top Players</h4>
+            <div class="leaderboard-mini">
+              <div class="leaderboard-item">
+                <span class="rank">#1</span>
+                <img src="https://cravatar.eu/helmavatar/Dream/32.png" alt="Player">
+                <span class="name">SwordMaster</span>
+                <span class="votes">2,450 Kills</span>
+              </div>
+              <div class="leaderboard-item">
+                <span class="rank">#2</span>
+                <img src="https://cravatar.eu/helmavatar/Technoblade/32.png" alt="Player">
+                <span class="name">PvPGod</span>
+                <span class="votes">2,200 Kills</span>
+              </div>
+              <div class="leaderboard-item">
+                <span class="rank">#3</span>
+                <img src="https://cravatar.eu/helmavatar/Sapnap/32.png" alt="Player">
+                <span class="name">ArenaKing</span>
+                <span class="votes">1,980 Kills</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gamemode-detail-actions">
+            <button class="btn-primary" onclick="copyIP()">
+              <i class="fa-solid fa-play"></i> Play FFA Now
+            </button>
+            <a href="#" class="btn-ghost">
+              <i class="fa-solid fa-list"></i> View Kits
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ NEWS ░░ -->
+  <section class="section" id="news">
+    <div class="section-header">
+      <div class="section-header-icon"><i class="fa-solid fa-newspaper"></i></div>
+      <div class="section-badge"><i class="fa-solid fa-newspaper"></i> Latest News</div>
+      <h2 class="section-title">What's <span class="gradient-text">New</span></h2>
+      <p class="section-subtitle">Stay updated with the latest announcements and updates.</p>
+    </div>
+
+    <div class="news-container">
+      <div class="news-grid">
+        
+        <!-- News Card 1 -->
+        <div class="news-card">
+          <div class="news-image">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <div class="news-content">
+            <div class="news-meta">
+              <span><i class="fa-solid fa-calendar"></i> Jan 15, 2025</span>
+              <span><i class="fa-solid fa-user"></i> Admin</span>
+            </div>
+            <h3 class="news-title">Season 3 Launch!</h3>
+            <p class="news-excerpt">We're excited to announce the launch of Season 3 with brand new features, custom items, and a fresh economy reset.</p>
+            <a href="#" class="news-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- News Card 2 -->
+        <div class="news-card">
+          <div class="news-image">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="news-content">
+            <div class="news-meta">
+              <span><i class="fa-solid fa-calendar"></i> Jan 10, 2025</span>
+              <span><i class="fa-solid fa-user"></i> Admin</span>
+            </div>
+            <h3 class="news-title">New Year Event</h3>
+            <p class="news-excerpt">Join our New Year celebration event with exclusive rewards, crate keys, and limited-time cosmetics!</p>
+            <a href="#" class="news-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- News Card 3 -->
+        <div class="news-card">
+          <div class="news-image">
+            <i class="fa-solid fa-shield-heart"></i>
+          </div>
+          <div class="news-content">
+            <div class="news-meta">
+              <span><i class="fa-solid fa-calendar"></i> Jan 5, 2025</span>
+              <span><i class="fa-solid fa-user"></i> Admin</span>
+            </div>
+            <h3 class="news-title">Anti-Cheat Update</h3>
+            <p class="news-excerpt">We've upgraded our anti-cheat system to ensure fair gameplay for everyone. Cheaters will be banned instantly.</p>
+            <a href="#" class="news-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ STAFF ░░ -->
+  <section class="section" id="staff">
+    <div class="section-header">
+      <div class="section-header-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="section-badge"><i class="fa-solid fa-users"></i> Our Team</div>
+      <h2 class="section-title">Meet the <span class="gradient-text">Staff</span></h2>
+      <p class="section-subtitle">Dedicated professionals keeping Lifea MC safe, fair, and fun 24/7.</p>
+    </div>
+
+    <div class="staff-grid">
+      
+      <!-- Owner -->
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://cravatar.eu/helmavatar/Notch/100.png" alt="Owner">
+        </div>
+        <div class="staff-role">Owner</div>
+        <h3 class="staff-name">LifeaOwner</h3>
+        <p class="staff-bio">Founder and lead developer. Building the best Minecraft experience.</p>
+        <div class="staff-socials">
+          <a href="#" class="staff-social-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="staff-social-link" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Admin -->
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://cravatar.eu/helmavatar/jeb_/100.png" alt="Admin">
+        </div>
+        <div class="staff-role">Admin</div>
+        <h3 class="staff-name">HeartKeeper</h3>
+        <p class="staff-bio">Server administrator. Handles technical issues and player support.</p>
+        <div class="staff-socials">
+          <a href="#" class="staff-social-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+      </div>
+
+      <!-- Moderator -->
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://cravatar.eu/helmavatar/Dinnerbone/100.png" alt="Moderator">
+        </div>
+        <div class="staff-role">Moderator</div>
+        <h3 class="staff-name">PulseGuard</h3>
+        <p class="staff-bio">Community moderator. Enforcing rules and keeping chat friendly.</p>
+        <div class="staff-socials">
+          <a href="#" class="staff-social-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+      </div>
+
+      <!-- Helper -->
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://cravatar.eu/helmavatar/Grumm/100.png" alt="Helper">
+        </div>
+        <div class="staff-role">Helper</div>
+        <h3 class="staff-name">BeatHelper</h3>
+        <p class="staff-bio">Helping new players get started and answering questions.</p>
+        <div class="staff-socials">
+          <a href="#" class="staff-social-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      
+      <!-- About -->
+      <div class="footer-col">
+        <h4>Lifea MC</h4>
+        <p>Your heart beats here. Join thousands of players in the ultimate Minecraft experience with Lifesteal, Earth SMP, FFA and more.</p>
+        <button class="btn-primary" onclick="copyIP()" style="font-size: 0.85rem; padding: 10px 20px;">
+          <i class="fa-solid fa-copy"></i> play.lifeamc.net
+        </button>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+          <li><a href="pages/vote.html"><i class="fa-solid fa-chevron-right"></i> Vote</a></li>
+          <li><a href="pages/rules.html"><i class="fa-solid fa-chevron-right"></i> Rules</a></li>
+          <li><a href="pages/staff.html"><i class="fa-solid fa-chevron-right"></i> Staff</a></li>
+          <li><a href="pages/store.html"><i class="fa-solid fa-chevron-right"></i> Store</a></li>
+        </ul>
+      </div>
+
+      <!-- Community -->
+      <div class="footer-col">
+        <h4>Community</h4>
+        <p>Join our community on social media and stay updated with the latest news and events.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="footer-social-btn" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="footer-social-btn" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="footer-social-btn" title="TikTok" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <div class="footer-copyright">
+          <strong>Lifea MC</strong> &copy; 2025. All rights reserved.
+        </div>
+        <div class="footer-disclaimer">
+          Not affiliated with Mojang Studios or Microsoft.
+        </div>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+        <a href="#" class="footer-bottom-link">Terms of Service</a>
+        <a href="#" class="footer-bottom-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ░░ TOAST ░░ -->
+  <div id="toast"><i class="fa-solid fa-check"></i> IP Copied!</div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
