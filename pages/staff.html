@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff — Lifea MC | Meet the Team</title>
+  <meta name="description" content="Meet the Lifea MC staff team: Owners, Managers, Moderators, and Helpers keeping the server safe, fair, and fun 24/7." />
+  <meta name="keywords" content="Lifea MC staff, Minecraft server team, SHENZO, PUREMORTIC, play.lifeamc.fun" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://lifeamc.fun/pages/staff.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lifea MC" />
+  <meta property="og:title" content="Staff — Lifea MC" />
+  <meta property="og:description" content="Meet the dedicated Lifea MC staff team keeping the server safe and fun." />
+  <meta property="og:url" content="https://lifeamc.fun/pages/staff.html" />
+  <meta property="og:image" content="https://lifeamc.fun/og-image.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('theme') || 'dark'; if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#0a0a0a');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #fff; color-scheme: light dark; }
+    html[data-theme="dark"] { background: #0a0a0a; color-scheme: dark; }
+    html[data-theme="dark"] body { background: #0a0a0a; }
+    html, body { transition: none !important; }
+    html.theme-ready,
+    html.theme-ready body { transition: background 0.5s ease, color 0.4s ease !important; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <canvas id="heartCanvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <svg class="logo-heart logo-heart--pixel" width="28" height="28" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="logo-layer logo-layer--outer" d="M8 14L2 8L3 3L8 2L13 3L14 8L8 14Z" fill="#dc143c"/>
+            <path class="logo-layer logo-layer--mid" d="M8 13L3 8L4 4L8 3L12 4L13 8L8 13Z" fill="#ff1744"/>
+            <path class="logo-layer logo-layer--inner" d="M8 12L4 8L5 5L8 4L11 5L12 8L8 12Z" fill="#dc143c"/>
+            <path class="logo-eye logo-eye--l" d="M6 6H7V7H6V6Z" fill="#000" opacity="0.3"/>
+            <path class="logo-eye logo-eye--r" d="M9 6H10V7H9V6Z" fill="#000" opacity="0.3"/>
+          </svg>
+          <svg class="logo-heart logo-heart--smooth" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff1744"/>
+          </svg>
+        </span>
+        <span>Lifea <strong>MC</strong></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li class="nav-item"><a href="vote.html" class="nav-link"><i class="fa-solid fa-ranking-star"></i> Tiers</a></li>
+        <li class="nav-item"><a href="rules.html" class="nav-link"><i class="fa-solid fa-scale-balanced"></i> Rules</a></li>
+        <li class="nav-item"><a href="staff.html" class="nav-link active"><i class="fa-solid fa-clipboard-user"></i> Staff</a></li>
+        <li class="nav-item">
+          <button type="button" class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+            <i class="fa-solid fa-map"></i> Map
+            <span class="dropdown-arrow">▾</span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-label">World Maps</div>
+            <a href="#"><i class="fa-solid fa-crosshairs"></i> FFA Arena Map</a>
+            <div class="dropdown-divider"></div>
+            <a href="#"><i class="fa-solid fa-info-circle"></i> About Maps</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="store.html" class="nav-link store-link"><i class="fa-solid fa-store"></i> Store</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="btn-ip-copy" onclick="copyIP()" title="Click to copy server IP">
+          <span class="ip-status" aria-hidden="true"></span>
+          <span class="ip-copy-details"><span class="ip-label">Server IP</span><span class="ip-text">play.lifeamc.fun</span></span>
+          <i class="fa-solid fa-copy" aria-hidden="true"></i>
+        </button>
+        <a href="https://discord.gg/3aabgt7Bfq" class="btn-discord" target="_blank">
+          <i class="fa-brands fa-discord"></i> Discord
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <span><svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:6px;">
+          <path d="M8 14L2 8L3 3L8 2L13 3L14 8L8 14Z" fill="#dc143c"/>
+          <path d="M8 13L3 8L4 4L8 3L12 4L13 8L8 13Z" fill="#ff1744"/>
+          <path d="M8 12L4 8L5 5L8 4L11 5L12 8L8 12Z" fill="#dc143c"/>
+        </svg> Lifea MC</span>
+      <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-content">
+      <button class="drawer-ip-btn" onclick="copyIP()"><i class="fa-solid fa-copy"></i> play.lifeamc.fun</button>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">
+        <div class="drawer-section-title">Navigation</div>
+        <ul>
+          <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="vote.html"><i class="fa-solid fa-ranking-star"></i> Tiers</a></li>
+          <li><a href="rules.html"><i class="fa-solid fa-scale-balanced"></i> Rules</a></li>
+          <li><a href="staff.html"><i class="fa-solid fa-clipboard-user"></i> Staff</a></li>
+          <li><a href="store.html"><i class="fa-solid fa-store"></i> Store</a></li>
+        </ul>
+      </div>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">
+        <div class="drawer-section-title">Maps</div>
+        <ul><li><a href="#"><i class="fa-solid fa-crosshairs"></i> FFA Arena Map</a></li></ul>
+      </div>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">
+        <div class="drawer-section-title">Community</div>
+        <ul><li><a href="https://discord.gg/3aabgt7Bfq" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a></li></ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <div class="page-header-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="page-badge"><i class="fa-solid fa-users"></i> Our Team</div>
+      <h1 class="page-title">Meet the <span class="gradient-text">Staff</span></h1>
+      <p class="page-subtitle">Dedicated professionals keeping Lifea MC safe, fair, and fun 24/7.</p>
+    </div>
+  </header>
+
+  <!-- STAFF SECTION -->
+  <section class="section">
+    <div class="staff-page-container">
+      <div class="staff-intro">
+        <div class="staff-intro-icon"><i class="fa-solid fa-shield-heart"></i></div>
+        <div>
+          <span>Lifea MC team</span>
+          <p>Meet the people who build, protect, and support the community every day.</p>
+        </div>
+        <div class="staff-intro-count"><strong>10</strong><span>Team members</span></div>
+      </div>
+
+      <section class="staff-group staff-group--leadership" aria-labelledby="owners-title">
+        <div class="staff-group-heading">
+          <span class="staff-group-icon"><i class="fa-solid fa-crown"></i></span>
+          <div><p>Leadership</p><h2 id="owners-title">Owners</h2></div>
+        </div>
+        <div class="staff-grid">
+          <article class="staff-card staff-card--owner">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/SHENZO/100.png" alt="SHENZO - Owner at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Owner</div>
+            <h3 class="staff-name">SHENZO</h3>
+            <p class="staff-bio">Co-founder of Lifea MC. Building the best PvP experience.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-crown"></i> Server leadership</div>
+          </article>
+          <article class="staff-card staff-card--owner">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/PUREMORTIC/100.png" alt="PUREMORTIC - Owner at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Owner</div>
+            <h3 class="staff-name">PUREMORTIC</h3>
+            <p class="staff-bio">Co-founder of Lifea MC. Overseeing server operations and growth.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-crown"></i> Server leadership</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="staff-group" aria-labelledby="management-title">
+        <div class="staff-group-heading">
+          <span class="staff-group-icon"><i class="fa-solid fa-user-tie"></i></span>
+          <div><p>Operations</p><h2 id="management-title">Management</h2></div>
+        </div>
+        <div class="staff-grid">
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/KURAMIL/100.png" alt="KURAMIL - Manager at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Manager</div>
+            <h3 class="staff-name">KURAMIL</h3>
+            <p class="staff-bio">Managing the team and keeping everything running smoothly.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-gears"></i> Team operations</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="staff-group" aria-labelledby="development-title">
+        <div class="staff-group-heading">
+          <span class="staff-group-icon"><i class="fa-solid fa-code"></i></span>
+          <div><p>Technical</p><h2 id="development-title">Development</h2></div>
+        </div>
+        <div class="staff-grid">
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/CRAVE/100.png" alt="CRAVE - Developer at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Developer</div>
+            <h3 class="staff-name">CRAVE</h3>
+            <p class="staff-bio">Building and maintaining the server infrastructure and plugins.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-code"></i> Plugins &amp; infrastructure</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="staff-group" aria-labelledby="moderators-title">
+        <div class="staff-group-heading">
+          <span class="staff-group-icon"><i class="fa-solid fa-gavel"></i></span>
+          <div><p>Community safety</p><h2 id="moderators-title">Moderators</h2></div>
+        </div>
+        <div class="staff-grid">
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/NOID/100.png" alt="NOID - Moderator at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Moderator</div>
+            <h3 class="staff-name">NOID</h3>
+            <p class="staff-bio">Enforcing rules and keeping the community fair and friendly.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-shield-halved"></i> Community moderation</div>
+          </article>
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/SPEEDVEX/100.png" alt="SPEEDVEX - Moderator at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Moderator</div>
+            <h3 class="staff-name">SPEEDVEX</h3>
+            <p class="staff-bio">Enforcing rules and keeping the community fair and friendly.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-shield-halved"></i> Community moderation</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="staff-group" aria-labelledby="helpers-title">
+        <div class="staff-group-heading">
+          <span class="staff-group-icon"><i class="fa-solid fa-hands-helping"></i></span>
+          <div><p>Player support</p><h2 id="helpers-title">Helpers</h2></div>
+        </div>
+        <div class="staff-grid">
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/NYX/100.png" alt="NYX - Helper at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Helper</div>
+            <h3 class="staff-name">NYX</h3>
+            <p class="staff-bio">Helping new players get started and answering questions.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-heart"></i> Player support</div>
+          </article>
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/AUN/100.png" alt="AUN - Helper at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Helper</div>
+            <h3 class="staff-name">AUN</h3>
+            <p class="staff-bio">Helping new players get started and answering questions.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-heart"></i> Player support</div>
+          </article>
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/PIXEL/100.png" alt="PIXEL PANGEY - Helper at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Helper</div>
+            <h3 class="staff-name">PIXEL PANGEY</h3>
+            <p class="staff-bio">Helping new players get started and answering questions.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-heart"></i> Player support</div>
+          </article>
+          <article class="staff-card">
+            <div class="staff-avatar">
+              <img src="https://cravatar.eu/helmavatar/REMAN/100.png" alt="REMAN COMMIE - Helper at Lifea MC" loading="lazy" decoding="async">
+            </div>
+            <div class="staff-role">Helper</div>
+            <h3 class="staff-name">REMAN COMMIE</h3>
+            <p class="staff-bio">Helping new players get started and answering questions.</p>
+            <div class="staff-card-footer"><i class="fa-solid fa-heart"></i> Player support</div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Lifea MC</h4>
+        <p>Your heart beats here. Join thousands of players in the ultimate Minecraft experience.</p>
+        <button class="btn-primary" onclick="copyIP()" style="font-size: 0.85rem; padding: 10px 20px;">
+          <i class="fa-solid fa-copy"></i> play.lifeamc.fun
+        </button>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+          <li><a href="vote.html"><i class="fa-solid fa-chevron-right"></i> Tiers</a></li>
+          <li><a href="rules.html"><i class="fa-solid fa-chevron-right"></i> Rules</a></li>
+          <li><a href="staff.html"><i class="fa-solid fa-chevron-right"></i> Staff</a></li>
+          <li><a href="store.html"><i class="fa-solid fa-chevron-right"></i> Store</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <p>Join our community on social media.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="#" class="footer-social-btn" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="footer-social-btn" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <div class="footer-copyright"><strong>Lifea MC</strong> &copy; 2025. All rights reserved.</div>
+        <div class="footer-disclaimer">Not affiliated with Mojang Studios or Microsoft.</div>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+        <a href="#" class="footer-bottom-link">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast"><i class="fa-solid fa-check"></i> <span id="toastText">IP Copied!</span></div>
+
+  <!-- SETTINGS MODAL -->
+  <div class="settings-overlay" id="settingsOverlay" hidden></div>
+  <div class="settings-modal" id="settingsModal" role="dialog" aria-label="Settings" hidden>
+    <div class="settings-inner">
+      <div class="settings-header">
+        <div class="settings-header-left"><i class="fa-solid fa-sliders"></i><h2>Settings</h2></div>
+        <button class="settings-close" id="settingsClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-sidebar">
+          <button class="settings-tab active" data-tab="appearance"><span class="stab-icon"><i class="fa-solid fa-palette"></i></span><span class="stab-label">Appearance</span></button>
+          <button class="settings-tab" data-tab="display"><span class="stab-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span><span class="stab-label">Effects</span></button>
+          <button class="settings-tab" data-tab="accessibility"><span class="stab-icon"><i class="fa-solid fa-universal-access"></i></span><span class="stab-label">Accessibility</span></button>
+          <button class="settings-tab" data-tab="notifications"><span class="stab-icon"><i class="fa-solid fa-bell"></i></span><span class="stab-label">Alerts</span></button>
+          <button class="settings-tab" data-tab="account"><span class="stab-icon"><i class="fa-solid fa-user"></i></span><span class="stab-label">Account</span></button>
+          <button class="settings-tab" data-tab="about"><span class="stab-icon"><i class="fa-solid fa-circle-info"></i></span><span class="stab-label">About</span></button>
+        </div>
+        <div class="settings-content">
+          <div class="settings-pane active" id="pane-appearance">
+            <div class="settings-group"><label class="settings-label"><i class="fa-solid fa-moon"></i> Color Theme</label><div class="settings-theme-options"><button class="settings-theme-btn" data-theme-value="light"><i class="fa-solid fa-sun"></i><span>Light</span><small>Clean &amp; bright</small></button><button class="settings-theme-btn" data-theme-value="dark"><i class="fa-solid fa-moon"></i><span>Dark</span><small>Easy on eyes</small></button><button class="settings-theme-btn" data-theme-value="system"><i class="fa-solid fa-circle-half-stroke"></i><span>System</span><small>Auto detect</small></button></div></div>
+            <div class="settings-group"><label class="settings-label"><i class="fa-solid fa-droplet"></i> Accent Color</label><div class="settings-accent-options"><button class="settings-accent-btn" data-color="#dc143c" style="--ac:#dc143c"><span></span><small>Crimson</small></button><button class="settings-accent-btn" data-color="#ff1744" style="--ac:#ff1744"><span></span><small>Red</small></button><button class="settings-accent-btn" data-color="#2196f3" style="--ac:#2196f3"><span></span><small>Blue</small></button><button class="settings-accent-btn" data-color="#4caf50" style="--ac:#4caf50"><span></span><small>Green</small></button><button class="settings-accent-btn" data-color="#ff9800" style="--ac:#ff9800"><span></span><small>Orange</small></button><button class="settings-accent-btn" data-color="#9c27b0" style="--ac:#9c27b0"><span></span><small>Purple</small></button></div></div>
+          </div>
+          <div class="settings-pane" id="pane-display">
+            <div class="settings-group"><label class="settings-label"><i class="fa-solid fa-sparkles"></i> Background Effects</label><div class="settings-toggle-row"><div class="strow-info"><span>Floating Hearts</span><small>Animated hearts in the background</small></div><label class="settings-switch"><input type="checkbox" id="heartParticlesToggle" checked><span class="settings-slider"></span></label></div><div class="settings-toggle-row"><div class="strow-info"><span>Block Particles</span><small>Minecraft blocks floating around</small></div><label class="settings-switch"><input type="checkbox" id="blockParticlesToggle" checked><span class="settings-slider"></span></label></div></div>
+          </div>
+          <div class="settings-pane" id="pane-accessibility">
+            <div class="settings-group"><label class="settings-label"><i class="fa-solid fa-text-height"></i> Text Size</label><div class="settings-size-options"><button class="settings-size-btn" data-size="small">A<small>Small</small></button><button class="settings-size-btn active" data-size="medium">A<small>Medium</small></button><button class="settings-size-btn" data-size="large">A<small>Large</small></button></div></div>
+            <div class="settings-group"><label class="settings-label"><i class="fa-solid fa-eye"></i> Visual Comfort</label><div class="settings-toggle-row"><div class="strow-info"><span>Reduce Animations</span><small>Turns off motion effects site-wide</small></div><label class="settings-switch"><input type="checkbox" id="reducedMotionToggle"><span class="settings-slider"></span></label></div><div class="settings-toggle-row"><div class="strow-info"><span>High Contrast</span><small>Boosts contrast for readability</small></div><label class="settings-switch"><input type="checkbox" id="highContrastToggle"><span class="settings-slider"></span></label></div></div>
+          </div>
+          <div class="settings-pane" id="pane-notifications">
+            <div class="settings-group"><label class="settings-label"><i class="fa-solid fa-bell"></i> Notify Me About</label><div class="settings-toggle-row"><div class="strow-info"><span>News &amp; Updates</span><small>New features and announcements</small></div><label class="settings-switch"><input type="checkbox" id="newsUpdatesToggle" checked><span class="settings-slider"></span></label></div><div class="settings-toggle-row"><div class="strow-info"><span>Server Status</span><small>Alerts when server goes online or offline</small></div><label class="settings-switch"><input type="checkbox" id="serverAlertsToggle" checked><span class="settings-slider"></span></label></div><div class="settings-toggle-row"><div class="strow-info"><span>Events &amp; Sales</span><small>Store promotions and in-game events</small></div><label class="settings-switch"><input type="checkbox" id="promotionsToggle"><span class="settings-slider"></span></label></div></div>
+          </div>
+          <div class="settings-pane" id="pane-account">
+            <div class="settings-account-banner"><i class="fa-solid fa-user-circle"></i><div><strong>Not signed in</strong><p>Sign in to sync your preferences and access your dashboard.</p></div></div>
+            <a href="auth.html" class="settings-signin-btn"><i class="fa-solid fa-right-to-bracket"></i> Sign In to Your Account</a>
+          </div>
+          <div class="settings-pane" id="pane-about">
+            <div class="settings-about-card"><div class="settings-about-item"><span><i class="fa-solid fa-code-branch"></i> Version</span><span>2.0.0</span></div><div class="settings-about-item"><span><i class="fa-solid fa-server"></i> Server IP</span><span>play.lifeamc.fun</span></div><div class="settings-about-item"><span><i class="fa-brands fa-discord"></i> Discord</span><span>discord.gg/Pr6anMJH3m</span></div><div class="settings-about-item"><span><i class="fa-solid fa-headset"></i> Support</span><span>Open a ticket on Discord</span></div></div>
+            <p class="settings-about-footer"><i class="fa-solid fa-heart"></i> Made with love by the Lifea MC team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
