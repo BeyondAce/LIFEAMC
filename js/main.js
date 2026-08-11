@@ -420,6 +420,12 @@ function updateUptimeDisplay() {
   uptimeEl.setAttribute('data-target', percentage);
 }
 
+function fetchWithTimeout(url, ms) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { signal: ctrl.signal }).finally(() => clearTimeout(t));
+}
+
 async function fetchServerStatus() {
   const ip = 'play.lifeamc.fun';
   const statusDot = document.getElementById('statusDot');
@@ -427,18 +433,22 @@ async function fetchServerStatus() {
   const playerCount = document.getElementById('playerCount');
   if (!statusDot || !statusLabel || !playerCount) return;
 
-  // mcstatus.io is realtime (no cache) — mcsrvstat caches 5min, use as fallback only
+  // mcstatus.io = realtime, no cache. mcsrvstat = 5min cache, fallback only.
   const apis = [
     async () => {
-      const r = await fetch(`https://api.mcstatus.io/v2/status/java/${ip}`, { signal: AbortSignal.timeout(8000) });
+      const r = await fetchWithTimeout(`https://api.mcstatus.io/v2/status/java/${ip}`, 9000);
       if (!r.ok) throw new Error();
       const d = await r.json();
+      // mcstatus.io shape: { online: bool, players: { online, max } }
+      if (typeof d.online !== 'boolean') throw new Error();
       return { online: d.online, players: d.players };
     },
     async () => {
-      const r = await fetch(`https://api.mcsrvstat.us/3/${ip}`, { signal: AbortSignal.timeout(8000) });
+      const r = await fetchWithTimeout(`https://api.mcsrvstat.us/3/${ip}`, 9000);
       if (!r.ok) throw new Error();
       const d = await r.json();
+      // mcsrvstat shape: { online: bool, players: { online, max } }
+      if (typeof d.online !== 'boolean') throw new Error();
       return { online: d.online, players: d.players };
     },
   ];
@@ -449,6 +459,7 @@ async function fetchServerStatus() {
   }
 
   if (!result) {
+    statusDot.className = 'status-dot offline';
     statusLabel.textContent = 'Unknown';
     playerCount.textContent = 'Could not reach server';
     return;
@@ -473,17 +484,16 @@ async function fetchServerStatus() {
   saveUptimeData(uptimeData);
   updateUptimeDisplay();
 
-  // show last updated time on the pill
   const pillSub = document.querySelector('#serverPill .pill-sub');
   if (pillSub) {
-    const t = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const t = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     pillSub.textContent = `play.lifeamc.fun · updated ${t}`;
   }
 }
 
-// Fetch immediately on load, then every 15s
+// Fetch on load, then every 15s — skip polling when tab is hidden
 fetchServerStatus();
-setInterval(fetchServerStatus, 15000);
+setInterval(() => { if (!document.hidden) fetchServerStatus(); }, 15000);
 
 // ── DISCORD MEMBER COUNT ──
 async function fetchDiscordMembers() {
