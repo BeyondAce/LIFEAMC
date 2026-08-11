@@ -4,30 +4,37 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://lifeamc.fun/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2025-07-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://lifeamc.fun/pages/rules.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2025-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://lifeamc.fun/pages/staff.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2025-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://lifeamc.fun/pages/store.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2025-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://lifeamc.fun/pages/vote.html</loc>
+    <lastmod>2025-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
     <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
   </url>
 </urlset>
