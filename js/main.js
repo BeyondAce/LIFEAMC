@@ -81,19 +81,16 @@ window.addEventListener('load', () => {
   }
 });
 
-// ── PERFORMANCE-OPTIMIZED SCROLL LISTENER ──
+// ── SCROLL LISTENER — shadow only, no size/position changes ──
 const navbar = document.getElementById('navbar');
 let ticking = false;
+let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
+  lastScroll = window.pageYOffset;
   if (!ticking) {
     window.requestAnimationFrame(() => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      navbar.classList.toggle('scrolled', lastScroll > 20);
       ticking = false;
     });
     ticking = true;
@@ -221,8 +218,9 @@ function initNavIndicator() {
 // ── MINECRAFT FLOATING SPRITES ──
 (function () {
   const canvas = document.getElementById('mcCanvas');
-  // The site now uses the CSS background, so never spend a frame on a hidden canvas.
   if (!canvas || getComputedStyle(canvas).display === 'none') return;
+  // Skip on touch/low-end devices to save battery and CPU
+  if (window.matchMedia('(pointer: coarse)').matches) return;
   const ctx = canvas.getContext('2d');
 
   const _ = null; // transparent
@@ -343,6 +341,8 @@ function initNavIndicator() {
   }));
 
   function tick() {
+    // Pause animation when tab is not visible
+    if (document.hidden) { requestAnimationFrame(tick); return; }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     items.forEach(b => {
       b.y -= b.vy;
@@ -470,8 +470,9 @@ async function fetchServerStatus() {
 
 // Fetch on load
 fetchServerStatus();
-// Refresh every 30 seconds
-setInterval(fetchServerStatus, 30000);
+// Refresh every 60s on mobile, 30s on desktop
+const statusInterval = window.matchMedia('(pointer: coarse)').matches ? 60000 : 30000;
+setInterval(fetchServerStatus, statusInterval);
 
 // ── DISCORD MEMBER COUNT ──
 async function fetchDiscordMembers() {
@@ -652,6 +653,20 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
+// Lazy-load staff avatars when they scroll into view
+const avatarObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+      avatarObserver.unobserve(img);
+    }
+  });
+}, { rootMargin: '200px' });
+
 // Observe all cards
 document.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('.gamemode-card, .news-card, .staff-card');
@@ -659,7 +674,18 @@ document.addEventListener('DOMContentLoaded', () => {
     card.classList.add('reveal');
     observer.observe(card);
   });
-  
+
+  // Lazy-load staff avatars: move src → data-src for images not yet visible
+  document.querySelectorAll('.staff-avatar img[src]').forEach(img => {
+    // Only defer images that are below the fold
+    const rect = img.getBoundingClientRect();
+    if (rect.top > window.innerHeight) {
+      img.dataset.src = img.src;
+      img.src = '';
+      avatarObserver.observe(img);
+    }
+  });
+
   // Initialize gamemode tabs if on homepage
   initGamemodeTabs();
   initNavIndicator();

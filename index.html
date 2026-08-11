@@ -3,9 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home • Lifea MC</title>
-  <meta name="description" content="Lifea MC – The best Minecraft server. FFA Arena and more." />
+  <title>LIFEA MC | Pakistan's Best Practice PvP + Lifesteal Minecraft Server</title>
+  <meta name="description" content="LIFEA MC – one of the best Minecraft networks in Pakistan, the Middle East & UAE. Practice PvP + Lifesteal servers, competitive leaderboards and a friendly community. Join on play.lifeamc.fun." />
+  <meta name="keywords" content="LIFEA MC, Minecraft Pakistan, best Minecraft server Middle East, Minecraft UAE, Practice PvP, Lifesteal Minecraft, play.lifeamc.fun, discord.lifeamc.fun" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
+  <meta name="geo.region" content="PK-AE-BH" />
+  <meta name="geo.placename" content="Pakistan, Middle East, UAE" />
+  <link rel="canonical" href="https://lifeamc.fun/" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <!-- Google Search Console: replace the content below with your GSC verification token -->
+  <meta name="google-site-verification" content="PASTE_YOUR_GSC_VERIFICATION_CODE_HERE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="LIFEA MC" />
+  <meta property="og:title" content="LIFEA MC | Pakistan's Best Practice PvP + Lifesteal Minecraft Server" />
+  <meta property="og:description" content="One of the best Minecraft networks in Pakistan, the Middle East & UAE — Practice PvP + Lifesteal. Join thousands on play.lifeamc.fun." />
+  <meta property="og:url" content="https://lifeamc.fun/" />
+  <meta property="og:image" content="https://lifeamc.fun/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LIFEA MC — Practice PvP + Lifesteal Minecraft server, Pakistan" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LIFEA MC | Pakistan's Best Practice PvP + Lifesteal Minecraft Server" />
+  <meta name="twitter:description" content="One of Pakistan's best Minecraft networks — Practice PvP + Lifesteal. Join on play.lifeamc.fun." />
+  <meta name="twitter:image" content="https://lifeamc.fun/og-image.png" />
+  <meta name="twitter:site" content="@LifeaMC" />
   <script>
     (function () {
       try {
@@ -23,14 +48,61 @@
     html[data-theme="dark"] { background: #0a0a0a; color-scheme: dark; }
     html[data-theme="dark"] body { background: #0a0a0a; }
   </style>
-  <meta property="og:title" content="Lifea MC" />
-  <meta property="og:description" content="Your heart beats here. Join Lifea MC today." />
-  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Structured data: Organization + WebSite + VideoGame (Practice PvP / Lifesteal, Pakistan) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://lifeamc.fun/#website",
+        "url": "https://lifeamc.fun/",
+        "name": "LIFEA MC",
+        "description": "One of Pakistan's best Minecraft networks — Practice PvP + Lifesteal.",
+        "publisher": { "@id": "https://lifeamc.fun/#org" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://lifeamc.fun/#org",
+        "name": "LIFEA MC",
+        "url": "https://lifeamc.fun/",
+        "logo": "https://lifeamc.fun/favicon.png",
+        "sameAs": ["https://discord.lifeamc.fun"]
+      },
+      {
+        "@type": "VideoGame",
+        "@id": "https://lifeamc.fun/#game",
+        "name": "LIFEA MC",
+        "url": "https://lifeamc.fun/",
+        "image": "https://lifeamc.fun/og-image.png",
+        "description": "One of Pakistan's best Minecraft Java networks offering Practice PvP and Lifesteal gameplay. Server IP: play.lifeamc.fun.",
+        "operatingSystem": "Java",
+        "applicationCategory": "Game",
+        "gamePlatform": "PC",
+        "genre": ["Practice PvP", "Lifesteal"],
+        "playMode": "MultiPlayer",
+        "gameServer": {
+          "@type": "GameServer",
+          "name": "play.lifeamc.fun",
+          "game": { "@id": "https://lifeamc.fun/#game" },
+          "serverLocation": {
+            "@type": "Place",
+            "name": "Pakistan",
+            "address": { "@type": "PostalAddress", "addressCountry": "PK" }
+          }
+        },
+        "author": { "@id": "https://lifeamc.fun/#org" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -95,7 +167,7 @@
           <span class="ip-copy-details"><span class="ip-label">Server IP</span><span class="ip-text">play.lifeamc.fun</span></span>
           <i class="fa-solid fa-copy" aria-hidden="true"></i>
         </button>
-        <a href="https://discord.gg/3aabgt7Bfq" class="btn-discord" target="_blank">
+        <a href="https://discord.lifeamc.fun" class="btn-discord" target="_blank">
           <i class="fa-brands fa-discord"></i> Discord
         </a>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -143,7 +215,7 @@
       <div class="drawer-section">
         <div class="drawer-section-title">Community</div>
         <ul>
-          <li><a href="https://discord.gg/3aabgt7Bfq" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a></li>
+          <li><a href="https://discord.lifeamc.fun" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a></li>
         </ul>
       </div>
     </div>
@@ -193,12 +265,12 @@
           </div>
         </div>
         <!-- Discord -->
-        <a href="https://discord.gg/3aabgt7Bfq" target="_blank" class="status-pill discord-pill">
+        <a href="https://discord.lifeamc.fun" target="_blank" class="status-pill discord-pill">
           <div class="pill-icon"><i class="fa-brands fa-discord"></i></div>
           <div class="pill-info">
             <span class="pill-top">Community</span>
             <span class="pill-main">Join Discord</span>
-            <span class="pill-sub">discord.gg/3aabgt7Bfq</span>
+            <span class="pill-sub">discord.lifeamc.fun</span>
           </div>
         </a>
       </div>
@@ -361,7 +433,7 @@
         <h3 class="staff-name">SHENZO</h3>
         <p class="staff-bio">Co-founder of Lifea MC. Building the best PvP experience.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
@@ -374,7 +446,7 @@
         <h3 class="staff-name">PUREMORTIC</h3>
         <p class="staff-bio">Co-founder of Lifea MC. Overseeing server operations and growth.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
@@ -387,7 +459,7 @@
         <h3 class="staff-name">KURAMIL</h3>
         <p class="staff-bio">Managing the team and keeping everything running smoothly.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
@@ -400,11 +472,11 @@
         <h3 class="staff-name">CRAVE</h3>
         <p class="staff-bio">Building and maintaining the server infrastructure and plugins.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
-      <!-- Moderators -->
+      <!-- Moderator -->
       <div class="staff-card">
         <div class="staff-avatar">
           <img src="https://cravatar.eu/helmavatar/NOID/100.png" alt="NOID - Moderator at Lifea MC" loading="lazy" decoding="async">
@@ -413,35 +485,11 @@
         <h3 class="staff-name">NOID</h3>
         <p class="staff-bio">Enforcing rules and keeping the community fair and friendly.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
-      <div class="staff-card">
-        <div class="staff-avatar">
-          <img src="https://cravatar.eu/helmavatar/SPEEDVEX/100.png" alt="SPEEDVEX - Moderator at Lifea MC" loading="lazy" decoding="async">
-        </div>
-        <div class="staff-role">Moderator</div>
-        <h3 class="staff-name">SPEEDVEX</h3>
-        <p class="staff-bio">Enforcing rules and keeping the community fair and friendly.</p>
-        <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
-        </div>
-      </div>
-
-      <!-- Helpers -->
-      <div class="staff-card">
-        <div class="staff-avatar">
-          <img src="https://cravatar.eu/helmavatar/NYX/100.png" alt="NYX - Helper at Lifea MC" loading="lazy" decoding="async">
-        </div>
-        <div class="staff-role">Helper</div>
-        <h3 class="staff-name">NYX</h3>
-        <p class="staff-bio">Helping new players get started and answering questions.</p>
-        <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
-        </div>
-      </div>
-
+      <!-- Helper -->
       <div class="staff-card">
         <div class="staff-avatar">
           <img src="https://cravatar.eu/helmavatar/AUN/100.png" alt="AUN - Helper at Lifea MC" loading="lazy" decoding="async">
@@ -450,31 +498,20 @@
         <h3 class="staff-name">AUN</h3>
         <p class="staff-bio">Helping new players get started and answering questions.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
+      <!-- Helper -->
       <div class="staff-card">
         <div class="staff-avatar">
-          <img src="https://cravatar.eu/helmavatar/PIXEL/100.png" alt="PIXEL PANGEY - Helper at Lifea MC" loading="lazy" decoding="async">
+          <img src="https://cravatar.eu/helmavatar/OZRA/100.png" alt="OZRA - Helper at Lifea MC" loading="lazy" decoding="async">
         </div>
         <div class="staff-role">Helper</div>
-        <h3 class="staff-name">PIXEL PANGEY</h3>
-        <p class="staff-bio">Helping new players get started and answering questions.</p>
+        <h3 class="staff-name">OZRA</h3>
+        <p class="staff-bio">Supporting the community and guiding players through the server.</p>
         <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
-        </div>
-      </div>
-
-      <div class="staff-card">
-        <div class="staff-avatar">
-          <img src="https://cravatar.eu/helmavatar/REMAN/100.png" alt="REMAN COMMIE - Helper at Lifea MC" loading="lazy" decoding="async">
-        </div>
-        <div class="staff-role">Helper</div>
-        <h3 class="staff-name">REMAN COMMIE</h3>
-        <p class="staff-bio">Helping new players get started and answering questions.</p>
-        <div class="staff-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="staff-social-link" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
 
@@ -511,7 +548,7 @@
         <h4>Community</h4>
         <p>Join our community on social media and stay updated with the latest news and events.</p>
         <div class="footer-socials">
-          <a href="https://discord.gg/3aabgt7Bfq" class="footer-social-btn" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://discord.lifeamc.fun" class="footer-social-btn" title="Discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
           <a href="#" class="footer-social-btn" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a>
           <a href="#" class="footer-social-btn" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
           <a href="#" class="footer-social-btn" title="TikTok" target="_blank"><i class="fa-brands fa-tiktok"></i></a>

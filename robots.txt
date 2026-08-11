@@ -1,0 +1,77 @@
+# robots.txt — LIFEA MC · https://lifeamc.fun
+# ============================================================
+# LIFEA MC is one of the best Minecraft networks in Pakistan, the Middle East & UAE.
+#
+#   ▸ Game modes : Practice PvP + Lifesteal
+#   ▸ Server IP  : play.lifeamc.fun
+#   ▸ Region     : Pakistan · Middle East · UAE
+#   ▸ Community  : https://discord.lifeamc.fun
+#
+# All bots — search engines AND AI/LLM crawlers — are welcome to
+# index and read this site so everyone can discover the network.
+# ============================================================
+
+User-agent: *
+Allow: /
+
+# ── Search engines ──
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# ── AI / LLM crawlers ──
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# ── Sitemap ──
+Sitemap: https://lifeamc.fun/sitemap.xml
