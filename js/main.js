@@ -420,23 +420,6 @@ function updateUptimeDisplay() {
   uptimeEl.setAttribute('data-target', percentage);
 }
 
-const STATUS_APIS = [
-  ip => `https://api.mcsrvstat.us/3/${ip}`,
-  ip => `https://api.mcstatus.io/v2/status/java/${ip}`,
-];
-
-async function tryFetchStatus(url, timeoutMs = 10000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const res = await fetch(url, { signal: controller.signal });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json();
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
 async function fetchServerStatus() {
   const ip = 'play.lifeamc.fun';
   const statusDot = document.getElementById('statusDot');
@@ -444,37 +427,36 @@ async function fetchServerStatus() {
   const playerCount = document.getElementById('playerCount');
   if (!statusDot || !statusLabel || !playerCount) return;
 
-  let data = null;
-  for (const apiUrl of STATUS_APIS) {
-    try {
-      data = await tryFetchStatus(apiUrl(ip));
-      break;
-    } catch (e) {
-      // try next API
-    }
+  // mcstatus.io is realtime (no cache) — mcsrvstat caches 5min, use as fallback only
+  const apis = [
+    async () => {
+      const r = await fetch(`https://api.mcstatus.io/v2/status/java/${ip}`, { signal: AbortSignal.timeout(8000) });
+      if (!r.ok) throw new Error();
+      const d = await r.json();
+      return { online: d.online, players: d.players };
+    },
+    async () => {
+      const r = await fetch(`https://api.mcsrvstat.us/3/${ip}`, { signal: AbortSignal.timeout(8000) });
+      if (!r.ok) throw new Error();
+      const d = await r.json();
+      return { online: d.online, players: d.players };
+    },
+  ];
+
+  let result = null;
+  for (const api of apis) {
+    try { result = await api(); break; } catch (e) {}
   }
 
-  if (!data) {
-    // retry once after 5s before giving up
-    await new Promise(r => setTimeout(r, 5000));
-    for (const apiUrl of STATUS_APIS) {
-      try {
-        data = await tryFetchStatus(apiUrl(ip));
-        break;
-      } catch (e) {}
-    }
-  }
-
-  if (!data) {
+  if (!result) {
     statusLabel.textContent = 'Unknown';
-    playerCount.textContent = 'Unable to fetch status';
-    return; // don't affect uptime tracking on API failure
+    playerCount.textContent = 'Could not reach server';
+    return;
   }
 
-  // normalise response shape between the two APIs
-  const isOnline = data.online ?? data.online ?? false;
-  const onlinePlayers = data.players?.online ?? 0;
-  const maxPlayers = data.players?.max ?? '?';
+  const isOnline = result.online === true;
+  const online = result.players?.online ?? 0;
+  const max = result.players?.max ?? '?';
 
   const uptimeData = getUptimeData();
   uptimeData.total++;
@@ -482,7 +464,7 @@ async function fetchServerStatus() {
     uptimeData.up++;
     statusDot.classList.remove('offline');
     statusLabel.textContent = 'Online';
-    playerCount.textContent = `${onlinePlayers} / ${maxPlayers} players online`;
+    playerCount.textContent = `${online} / ${max} players online`;
   } else {
     statusDot.classList.add('offline');
     statusLabel.textContent = 'Offline';
@@ -490,13 +472,18 @@ async function fetchServerStatus() {
   }
   saveUptimeData(uptimeData);
   updateUptimeDisplay();
+
+  // show last updated time on the pill
+  const pillSub = document.querySelector('#serverPill .pill-sub');
+  if (pillSub) {
+    const t = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    pillSub.textContent = `play.lifeamc.fun · updated ${t}`;
+  }
 }
 
-// Fetch on load
+// Fetch immediately on load, then every 15s
 fetchServerStatus();
-// Refresh every 60s on mobile, 30s on desktop
-const statusInterval = window.matchMedia('(pointer: coarse)').matches ? 60000 : 30000;
-setInterval(fetchServerStatus, statusInterval);
+setInterval(fetchServerStatus, 15000);
 
 // ── DISCORD MEMBER COUNT ──
 async function fetchDiscordMembers() {
