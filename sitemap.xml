@@ -30,11 +30,4 @@
     <priority>0.8</priority>
     <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
   </url>
-  <url>
-    <loc>https://lifeamc.fun/pages/vote.html</loc>
-    <lastmod>2025-07-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image><image:loc>https://lifeamc.fun/og-image.png</image:loc></image:image>
-  </url>
 </urlset>
